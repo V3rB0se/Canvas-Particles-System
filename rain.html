@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Rain Particles Effect" />
+    <meta name="author" content="linux" />
+    <meta name="keywords" content="Rain, HTML5 cavnas, Movement, Physics">
+    <title>Rain Particles</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            background: #1d2125;
+        }
+        canvas{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+</body>
+</html>
+<script>
+
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    
+    let angle = 0;
+
+    let colorsArray = ['#a5cecd','#94b9b8','#a0acc0', '#2f7a8a', '#62909b'];
+    let particlesArray = [];
+    class Particles{
+        constructor(){
+            this.x =  window.innerWidth / 2;
+            this.y =  window.innerHeight / 2;
+            this.baseX = this.x;
+            this.baseY = this.y;
+            this.size = 30;
+            this.color = '#fff';
+            this.speedX = Math.random() * 0;
+            this.speedY = Math.random() * 10;
+        }
+        draw(){
+            ctx.beginPath();
+            ctx.fillStyle = this.color;
+            ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI, false);
+            ctx.fill();
+            ctx.closePath();
+        
+        }
+        update(){
+            // this.x += this.speedX
+               this.y += this.speedY * Math.sin(angle);
+               this.x += this.speedX * Math.cos(angle);
+            //    if(this.x >  window.innerWidth || this.x < 0){
+            //        this.x = -this.speedX + Math.cos(angle);
+                   
+            //    }
+            //    if(this.y > window.innerHeight || this.y < 0){
+            //        this.y = -this.speedY * Math.sin(angle);
+            //    }
+               
+        }
+
+    }
+
+    
+
+    
+    addEventListener('resize',init);    
+        
+
+
+    function pushArray(){
+        for(let i = 0; i < 1000; i++){
+            particlesArray.push(new Particles());
+        }
+    }
+    pushArray();
+
+    
+    function updateArray(){
+        if(particlesArray.length < 1){
+        }
+        for(let i = 0; i < particlesArray.length; i++){
+            particlesArray[i].update();
+            particlesArray[i].draw();
+        }
+    }
+
+
+    function frame(){
+        ctx.fillStyle = 'rgba(0,0,0,0.3)'
+        ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+        updateArray();
+        requestAnimationFrame(frame);
+        angle+=0.1;
+    }
+
+    function init(){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particlesArray = [];
+        pushArray();
+    }
+    frame();
+</script>

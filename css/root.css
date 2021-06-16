@@ -1,0 +1,50 @@
+@font-face {
+    font-family: agrandir;
+    src: url(agrandir.ttf);
+}
+:color{
+    --canvas-background:#fffa9a;
+}
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height:100%;
+    width:100%;
+    overscroll-behavior:contain;
+}
+body{
+    overscroll-behavior: contain;
+}
+canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background:#fffa9a;
+}
+.dg.ac{
+    position: relative;
+    z-index: 999999;
+}
+.back-to-home{
+    position: absolute;
+    bottom:20px;
+    left: 20px;
+    width: 100px;
+    height: 100px;
+    z-index: 99;
+    background: url(../images/backx.png);   
+    background-position: center;
+    background-repeat: no-repeat;
+    user-select: none;
+    transition:all 200ms linear;
+    cursor: pointer;
+}
+.back-to-home:hover{
+    transform: translate(-20px,20px);
+    transition:all 200ms linear;
+}
