@@ -431,7 +431,9 @@ setTimeout(()=> {
   const elementx = document.querySelectorAll('input');
   elementx.forEach((elem)=>{
   elem.setAttribute('readonly', true);
-})
+  elem.style.pointerEvents = 'none';
+
+  })
 },2000);
 
 
