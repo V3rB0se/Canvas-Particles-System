@@ -12,19 +12,17 @@
 <br>
 A quick google search should be enough to understand what html5 canvas is
 But you should consider reading the documentation of mdn regarding what canvas api is.
-
-<br>
-<b>Well let me save your time :P</b>
 <br>
 <br>
-<b>"The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element. Among other things, it can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing."</b>
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas_API</a>
+<h3>Mdn Docs</h3>
+<b>"The Canvas API provides a means for drawing graphics via JavaScript and the HTML <canvas> element. Among other things, it can be used for animation, game graphics, data visualization, photo manipulation, and real-time video processing."</b><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Source</a>
 <br>
 <br>
-    <b style="color:red;">Note :</b> I'm a complete beginner & still learnng, my code can be messy / unreadable. i'll improve it Soon .
+    <b>Note :</b> I'm a complete beginner & still learnng, my code can be messy / unreadable. i'll improve it Soon .
 <br>
 <br>
-# Libraries : 
+    <h1>Libraries</h1>
 <h4>The following libraries / open-source projects were used in the development of this project.</h4>
 <ol>
     <li><a href="https://github.com/greensock/GSAP">Gsap</a>  (Tweening Intro) </li>
