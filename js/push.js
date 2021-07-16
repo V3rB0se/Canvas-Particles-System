@@ -4,18 +4,19 @@ document.body.appendChild(stats.dom);
 
 const canvas = document.querySelector('canvas');
 const settings = {
-    Background: '#111',
+    Background: 'rgba(0,0,0,1)',
     Particles_Color: 'rgba(255,255,255,1)',
     ColorFul: false,
     Mouse: 0,
     Particles: 0,
-    Speed: 0, 
+    Speed: 0,
     Mouse_Interactivity: 0,
     Particles_size: 0,
     Liquid: false,
     Connect: false,
     Distance: 0,
-    Effects: 'Magnet' 
+    Effects: 'Magnet',
+    Trail: false,
 }
 // Magnet Effect to work
 let dx,
@@ -35,20 +36,27 @@ let dx,
     reqAniPush,
     reqAniMag,
     hue = 0,
-    drawing = false;
+    drawing = false,
+    backgroundColor,
+    isTrail = false;
 const pi = Math.PI * 2;
 
 gui = new dat.GUI({
     name: 'Particles System'
 });
 
-gui.add(settings, 'Effects', ['Magnet', 'Push']).setValue('Magnet').onChange(function (valueIs) {
+gui.add(settings, 'Effects', ['Magnet', 'Push']).setValue('Magnet').onChange(function(valueIs) {
     onChange();
     animationTree();
 });
 
-animationTree();
+let spliArr = [];
+let colorText;
+gui.add(settings, 'Trail').onChange((trail) => {
+    isTrail = trail;
+});
 
+animationTree();
 
 
 
@@ -89,7 +97,7 @@ function onChange() {
 }
 
 
-gui.add(settings, 'Connect').onChange(function (Checked) {
+gui.add(settings, 'Connect').onChange(function(Checked) {
     function request() {
         if (Checked) {
             requestAni = requestAnimationFrame(request);
@@ -113,7 +121,8 @@ gui.add(settings, 'Connect').onChange(function (Checked) {
 
                 }
             }
-        } else {
+        } 
+        else {
             cancelAnimationFrame(requestAni);
         }
     }
@@ -138,7 +147,9 @@ gui.add(settings, 'Liquid').onChange(value => {
 const colorUpdate = gui.add(settings, 'ColorFul').onChange(value => {
     value ? root.changeColor() : root.returnColor();
 });
-gui.addColor(settings, 'Background');
+gui.addColor(settings, 'Background').onChange(() => {
+    backgroundColor = settings.Background;
+})
 gui.addColor(settings, 'Particles_Color').onChange(() => {
     root.particlesColor();
     settings.ColorFul = false;
@@ -254,10 +265,7 @@ class Particles {
         this.density = settings.Mouse_Interactivity;
     }
     update() {
-
-
-
-
+      
         this.x += this.speedX;
         this.y += this.speedY;
 
@@ -268,21 +276,7 @@ class Particles {
         if (this.y + this.size > window.innerHeight || this.y + this.size < 0) {
             this.speedY = -this.speedY;
         }
-
-
-
-        // if (this.x !== this.baseX ) {
-        //     let dx = this.x - this.baseX;
-        //     this.x -= dx / 5;
-        // }
-        // if (this.y !== this.baseY ) {
-        //     let dy = this.y - this.baseY;
-        //     this.y -= dy / 5;
-        // }
-
-
-
-
+      
     }
     draw() {
         ctx.beginPath();
@@ -376,12 +370,20 @@ function handle() {
         particlesArray[i].draw();
     }
 }
-
 const animate = () => {
+    if (isTrail) {
+        spliArr = settings.Background.split(",");
+        spliArr.pop();
+        colorText = spliArr.toString();
+        ctx.fillStyle = `${colorText},0.1)`;
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+    } else {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
     stats.begin();
     document.body.style.background = settings.Background;
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
     handle();
+
 
     requestAnimationFrame(animate);
     if (hue == 360) {
@@ -427,13 +429,15 @@ document.body.insertAdjacentHTML('afterbegin', `
         </defs>
       </svg>
       `);
-setTimeout(()=> {
-  const elementx = document.querySelectorAll('input');
-  elementx.forEach((elem)=>{
-  elem.setAttribute('readonly', true);
-  elem.style.pointerEvents = 'none';
+setTimeout(() => {
+    const elementx = document.querySelectorAll('input');
+    elementx.forEach((elem) => {
+        elem.setAttribute('readonly', true);
+        elem.style.pointerEvents = 'none';
+    })
+    const datGuiElementsName = document.querySelectorAll('.property-name');
+    datGuiElementsName.forEach((elem) => {
+        elem.style.userSelect = 'none';
 
-  })
-},2000);
-
-
+    })
+}, 2000);
