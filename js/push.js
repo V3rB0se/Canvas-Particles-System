@@ -38,20 +38,22 @@ let dx,
     hue = 0,
     drawing = false,
     backgroundColor,
+    spliArr = [],
+    colorText;
     isTrail = false;
+
 const pi = Math.PI * 2;
 
 gui = new dat.GUI({
     name: 'Particles System'
 });
 
-gui.add(settings, 'Effects', ['Magnet', 'Push']).setValue('Magnet').onChange(function(valueIs) {
+gui.add(settings, 'Effects', ['Magnet', 'Push']).setValue('Magnet').onChange((valueIs) => {
     onChange();
     animationTree();
 });
 
-let spliArr = [];
-let colorText;
+
 gui.add(settings, 'Trail').onChange((trail) => {
     isTrail = trail;
 });
@@ -230,21 +232,11 @@ canvas.addEventListener('mousemove', (event) => {
 
 })
 canvas.addEventListener('mousedown', (ev) => {
-    if (window.matchMedia("(pointer: coarse)").matches) {
-        ev.preventDefault()
-        console.log(drawing);
-    } else {
-
-        drawing = true;
-    }
+    drawing = true;
 })
 
 canvas.addEventListener('mouseup', (evx) => {
-    if (window.matchMedia("(pointer: coarse)").matches) {
-        evx.preventDefault()
-    } else {
-        drawing = false;
-    }
+    drawing = false;
 })
 
 
@@ -259,8 +251,8 @@ class Particles {
         this.baseX = this.x;
         this.baseY = this.y;
         this.size = Math.random() * settings.Particles_size + 1;
-        this.speedX = Math.random() * 0.6503870422473065;
-        this.speedY = Math.random() * 0.6503870422473065;
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 - 1.5;
         this.color = settings.Particles_Color;
         this.density = settings.Mouse_Interactivity;
     }
@@ -310,8 +302,8 @@ class Particles {
     }
     particleSpeed() {
         for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].speedX = Math.random() * (settings.Speed / 2);
-            particlesArray[i].speedY = Math.random() * (settings.Speed / 2);
+            particlesArray[i].speedX = Math.random() * settings.Speed / 2;
+            particlesArray[i].speedY = Math.random() * settings.Speed / 2;
         }
     }
     pushParticles() {
