@@ -1,0 +1,29 @@
+ html,body {
+            overscroll-behavior: none;
+            height:100%; 
+            margin:0;
+            padding:0;
+        }
+       canvas {
+            display: block;
+            margin: 0;
+            padding: 0;
+            position: fixed;
+            top:0;
+            left: 0;
+            height:100%; 
+            background: #111;
+        }
+        .btn-01 {
+            position: absolute;
+            bottom:20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #fff;
+            border: none;
+            box-shadow: none;
+        }
+        svg{
+            width: 0;
+            height: 0;
+        }
