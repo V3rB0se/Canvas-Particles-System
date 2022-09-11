@@ -17,7 +17,7 @@ let gui,
     saveButton,
     image
 
-const datGui = () => {
+function datGui(){
     gui = new dat.GUI({
         name: 'My GUI'
     });
