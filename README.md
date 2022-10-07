@@ -19,9 +19,6 @@ But you should consider reading the documentation of mdn regarding what canvas a
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Source</a>
 <br>
 <br>
-    <b>Note :</b> I'm a complete beginner & still learnng, my code can be messy / unreadable. i'll improve it Soon .
-<br>
-<br>
     <h1>Libraries</h1>
 <h4>The following libraries / open-source projects were used in the development of this project.</h4>
 <ol>
