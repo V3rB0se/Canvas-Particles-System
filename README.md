@@ -61,12 +61,8 @@ Rest is written in vanilla javascript
 
 
 <hr>
-<br> Help me Improve this project by contributing in it 
 
 
 <b>Thanks to <a href="https://www.youtube.com/channel/UCEqc149iR-ALYkGM6TG-7vQ">Franks Laboratory</a> for teaching and guiding me.</b>
 
 
-Social Links : <br>
-
-<a href="instagram.com/alinx.pyy">Instagram</a>
