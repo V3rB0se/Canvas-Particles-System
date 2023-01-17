@@ -63,6 +63,6 @@ Rest is written in vanilla javascript
 <hr>
 
 
-<b>Thanks to <a href="https://www.youtube.com/channel/UCEqc149iR-ALYkGM6TG-7vQ">Franks Laboratory</a> for teaching and guiding me.</b>
+<b>Thanks to <a href="https://www.youtube.com/channel/UCEqc149iR-ALYkGM6TG-7vQ">Franks Laboratory</a>
 
 
