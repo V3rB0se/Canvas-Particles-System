@@ -27,7 +27,7 @@ But you should consider reading the documentation of mdn regarding what canvas a
     <li><a href="https://github.com/dataarts/dat.gui">Dat.gui</a>  (Controling / Changing Values)</li>
 </ol>
 
-Rest is written in vanilla javascript 
+rest is written in vanilla javascript 
 
 <br>
 
